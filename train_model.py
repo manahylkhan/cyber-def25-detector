@@ -2,17 +2,15 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score, classification_report
 import joblib
-import os
 
-# Generate synthetic network log data for demonstration
-# In real scenario, you would load actual network traffic data
+print("="*60)
+print("CYBER-DEF25 Malware Detection Model Training")
+print("="*60)
+
+# Generate synthetic network log data
 def generate_synthetic_data(n_samples=10000):
-    """
-    Generate synthetic network log features for malware detection
-    Features: packet_size, duration, protocol_type, flag_count, error_rate, etc.
-    """
     np.random.seed(42)
     
     data = {
@@ -33,7 +31,6 @@ def generate_synthetic_data(n_samples=10000):
     df = pd.DataFrame(data)
     
     # Create labels (0 = Normal, 1 = Malware)
-    # Simple rule: if multiple suspicious features are high, label as malware
     df['is_malware'] = (
         (df['wrong_fragment'] > 2) | 
         (df['num_failed_logins'] > 2) |
@@ -42,11 +39,6 @@ def generate_synthetic_data(n_samples=10000):
     
     return df
 
-print("="*60)
-print("CYBER-DEF25 Malware Detection Model Training")
-print("="*60)
-
-# Generate training data
 print("\n[1/6] Generating synthetic network log data...")
 data = generate_synthetic_data(10000)
 print(f"Dataset shape: {data.shape}")
