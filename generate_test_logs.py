@@ -2,10 +2,12 @@ import pandas as pd
 import numpy as np
 import os
 
+print("="*60)
+print("Generating Test Network Log Files")
+print("="*60)
+
 # Create network_logs directory
 os.makedirs('network_logs', exist_ok=True)
-
-print("Generating test network log files...")
 
 # Generate test log file with some malicious patterns
 np.random.seed(123)
@@ -35,7 +37,12 @@ test_df.loc[10:15, 'num_failed_logins'] = 4
 test_df.loc[30:35, 'urgent'] = 2
 
 # Save test logs
-test_df.to_csv('network_logs/test_logs_001.csv', index=False)
-print(f"Created: network_logs/test_logs_001.csv ({len(test_df)} records)")
+output_file = 'network_logs/test_logs_001.csv'
+test_df.to_csv(output_file, index=False)
+print(f"\n✅ Created: {output_file}")
+print(f"   Records: {len(test_df)}")
+print(f"   Columns: {list(test_df.columns)}")
 
+print("\n" + "="*60)
 print("Test log generation completed!")
+print("="*60)
