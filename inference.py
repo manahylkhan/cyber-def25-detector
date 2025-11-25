@@ -33,7 +33,6 @@ log_files = glob.glob(os.path.join(input_dir, '*.csv'))
 if not log_files:
     print("Warning: No log files found in /input/logs!")
     print("Creating sample output file...")
-    # Create empty alerts file
     alerts_df = pd.DataFrame(columns=['timestamp', 'log_file', 'threat_detected', 'confidence'])
     alerts_df.to_csv(os.path.join(output_dir, 'alerts.csv'), index=False)
     exit(0)
@@ -56,7 +55,6 @@ for log_file in log_files:
         missing_features = set(feature_names) - set(logs_df.columns)
         if missing_features:
             print(f"  - Warning: Missing features: {missing_features}")
-            # Add missing features with default values
             for feature in missing_features:
                 logs_df[feature] = 0
         
@@ -102,7 +100,6 @@ if all_alerts:
     print(alerts_df.head())
 else:
     print("No threats detected in any log files.")
-    # Still create an empty alerts file
     alerts_df = pd.DataFrame(columns=['timestamp', 'log_file', 'threat_detected', 'confidence'])
     alerts_df.to_csv(os.path.join(output_dir, 'alerts.csv'), index=False)
 
