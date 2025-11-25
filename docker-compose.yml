@@ -2,13 +2,10 @@ version: '3.8'
 
 services:
   malware-detection:
-    build: .
+    image: cyber-def25-detector
     container_name: cyber-def25-detector
     volumes:
-      # Mount host folder to container input
       - ./network_logs:/input/logs
-      # Mount output folder to get results
       - ./output:/output
     environment:
       - TZ=Asia/Karachi
-    restart: unless-stopped
