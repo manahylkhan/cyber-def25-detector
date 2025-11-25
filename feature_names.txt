@@ -1,0 +1,1 @@
+packet_size,duration,src_bytes,dst_bytes,wrong_fragment,urgent,hot,num_failed_logins,num_file_creations,num_access_files,count,srv_count
