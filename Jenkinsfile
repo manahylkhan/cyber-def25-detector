@@ -43,16 +43,3 @@ pipeline {
         }
     }
 }
-```
-
----
-
-## File 8: `.gitignore`
-```
-__pycache__/
-*.pyc
-output/
-*.log
-.vscode/
-.idea/
-.DS_Store
